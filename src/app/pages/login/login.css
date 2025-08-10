@@ -1,0 +1,68 @@
+/* Fundo recortado com clip-path */
+.background-clip {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    clip-path: polygon(0 88%, 35% 0, 100% 60%, 0 0);
+    background-color: rgba(8, 0, 255, 0.767);
+    z-index: -1;
+  }
+  
+  /* Conteúdo principal */
+  .content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Seu estilo da card */
+  .card {
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: 20%;
+    margin: 10% auto 0 auto;
+    padding: 4%;
+    border-radius: 20px 10%;
+  }
+  
+  .card-titulo {
+    text-align: center;
+    display: grid;
+    gap: 5%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+  
+  .registro {
+    display: grid;
+    gap: 2vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .registro input {
+    width: 300px;
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 1px solid blue;
+    box-shadow: none;
+    margin-bottom: 5%;
+  }
+  
+  .button{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+  }
+
+  .button button{
+    padding: 4%;
+    width: 20%;
+    border-radius: 10px 5%;
+    border: 1px solid rgb(0, 0, 0);
+    box-shadow: none;
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+  }
+
