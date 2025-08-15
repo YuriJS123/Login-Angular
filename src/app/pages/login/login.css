@@ -66,3 +66,27 @@
     color: white;
   }
 
+@media screen and (max-width: 800px){
+  .background-clip{
+    width: 70vh;
+    
+  }
+
+  .card{
+    width: 80%;
+    margin-top: 50%;
+  }
+
+  .card-titulo{
+    font-size: small;
+   justify-content: center; 
+  }
+
+  .registro input{
+    width: 30vh;
+    align-items: center;
+    margin-right: 20px;
+    padding: 4%;
+    justify-content: center; 
+  }
+}

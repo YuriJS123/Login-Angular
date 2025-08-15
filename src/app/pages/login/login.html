@@ -5,12 +5,13 @@
         <div class="card-titulo">
           <h1>Login</h1>
           <div class="registro">
-            <input type="email" placeholder="Digite o seu Email">
-            <input type="password" placeholder="Digite sua Senha">
+            <input type="email" placeholder="Digite o seu Email" [(ngModel)]="email">
+            <input type="password" placeholder="Digite sua Senha" [(ngModel)]="senha">
           </div>
           <div class="button">
-          <button>Entrar</button>
-        </div>
+            <button (click)="entrar()">Entrar</button>
+          </div>
+          
         </div>
       </div>
     </div>
