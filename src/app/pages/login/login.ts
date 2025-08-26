@@ -24,7 +24,7 @@ export class Login {
     .then(async res => {
       if (res.ok) {
         alert(await res.text());
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/HubDeLinguagens']);
       } else {
         alert(await res.text());
       }
