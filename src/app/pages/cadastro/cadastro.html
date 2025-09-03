@@ -1,0 +1,58 @@
+<div class="background-clip"></div>
+
+<div class="content">
+  <div class="card">
+    <div class="card-titulo">
+      <h1>Cadastro</h1>
+      <form (ngSubmit)="cadastrarLocal()" #cadastroForm="ngForm" novalidate>
+
+        <!-- Nome -->
+        <p class="Dados">Nome:</p>
+        <input type="text" [(ngModel)]="nome" name="nome" placeholder="Digite seu nome" required>
+
+        <!-- Email -->
+        <p class="Dados">Email:</p>
+        <input type="email" [(ngModel)]="email" name="email" placeholder="Digite seu email" required>
+
+        <!-- Senha -->
+        <p class="Dados">Senha:</p>
+        <div class="password-container">
+          <input
+            id="senha"
+            [type]="mostrarSenha ? 'text' : 'password'"
+            [(ngModel)]="senhaTemp"
+            name="senhaTemp"
+            placeholder="Crie uma senha"
+            (input)="validarSenha()"
+          >
+          <i class="bi" [ngClass]="mostrarSenha ? 'bi-eye-slash' : 'bi-eye'" (click)="mostrarSenha = !mostrarSenha"></i>
+        </div>
+
+        <!-- Confirmar Senha -->
+        <p class="Dados">Confirmar Senha:</p>
+        <div class="password-container">
+          <input
+            id="confirmarSenha"
+            [type]="mostrarSenha ? 'text' : 'password'"
+            [(ngModel)]="confirmarSenhaTemp"
+            name="confirmarSenhaTemp"
+            placeholder="Repita a senha"
+          >
+          <i class="bi" [ngClass]="mostrarSenha ? 'bi-eye-slash' : 'bi-eye'" (click)="mostrarSenha = !mostrarSenha"></i>
+        </div>
+
+        <!-- Erro Atual -->
+        <div *ngIf="erroAtual" class="erro-geral">
+          {{ erroAtual }}
+        </div>
+
+        <!-- Botão -->
+        <div class="button">
+          <button type="submit">Cadastrar</button>
+          <a class="cadastro" [routerLink]="'/Login'">Já tem uma conta? Faça login</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
