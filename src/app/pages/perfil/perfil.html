@@ -1,0 +1,26 @@
+<div class="campo">
+<div class="container-imagem">
+    <div class="avatar-container">
+      <ng-container *ngIf="imagemPreview; else semImagem">
+        <img [src]="imagemPreview" class="avatar" alt="Avatar do aluno">
+      </ng-container>
+
+      <ng-template #semImagem>
+        <div class="avatar vazio">
+          <i class="bi bi-person-fill icone-fundo"></i>
+        </div>
+      </ng-template>
+      <label for="inputAvatar" class="icone-lapis" title="Alterar foto do perfil">
+        <i class="bi bi-pencil-fill"></i>
+      </label>
+
+      <input id="inputAvatar" type="file" accept="image/*" (change)="onImagemSelecionada($event)" hidden>
+    </div>
+  </div>
+
+  <div>
+
+   <input type="text" placeholder="Coloque seu nome">
+   <input type="">
+  </div>
+</div>
