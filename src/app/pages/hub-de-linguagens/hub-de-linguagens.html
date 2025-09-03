@@ -1,18 +1,33 @@
 <body>
 <header>
     <div class="search-container">
+       <img class="imgs" src="logo.png" alt="Logo">
         <input class="procurar" type="search" placeholder="Procurar...">
         <button type="button" class="btn-search">
           <i class="bi bi-search"></i>
         </button>
+        <div  class="container-imagem">
+          <a [routerLink]="'/Perfil'">
+          <div class="avatar-container">
+            <ng-container *ngIf="imagemPreview; else semImagem">
+              <img [src]="imagemPreview" class="avatar" alt="Avatar do aluno">
+            </ng-container>
+    
+            <ng-template #semImagem>
+              <div class="avatar vazio">
+                <i class="bi bi-person-fill icone-fundo"></i>
+              </div>
+            </ng-template>
+    
+           <!-- <label for="inputAvatar" class="icone-lapis" title="Alterar foto do perfil">
+              <i class="bi bi-pencil-fill"></i>
+            </label> -->
+    
+            <input id="inputAvatar" type="file" accept="image/*" (change)="onImagemSelecionada($event)" hidden>
+          </div>
+       </a> </div>
       </div>
       
-      
-      
-      
-    
-        
- <img class="imgs" src="logo.png" alt="Logo Lúmen">
 </header>
     <div class="escolhas">
        
@@ -20,7 +35,7 @@
       
       <a class="LS" [routerLink]="'/PaginaHtml'">HTML</a>
 
-        <a class="LS" href="./HTML/PaginaCSS.html">CSS</a>
+        <a class="LS" [routerLink]="'/PaginaCss'">CSS</a>
         <a class="LS" href="#">JAVASCRIPT</a>
         <a class="LS" href="#">C</a>
         <a class="LS" href="#">JAVA</a>
