@@ -53,6 +53,9 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
   }
 
   .button button{
@@ -64,8 +67,14 @@
     cursor: pointer;
     background-color: blue;
     color: white;
+    
   }
-
+.cadastro{
+  background-color: transparent;
+  color: blue;
+  text-decoration: none;
+  margin-bottom: 5%;
+}
 @media screen and (max-width: 800px){
   .background-clip{
     width: 70vh;
