@@ -6,40 +6,50 @@
       <h1>Cadastro</h1>
       <form (ngSubmit)="cadastrarLocal()" #cadastroForm="ngForm" novalidate>
 
-        <!-- Nome -->
-        <p class="Dados">Nome:</p>
-        <input type="text" [(ngModel)]="nome" name="nome" placeholder="Digite seu nome" required>
+<!-- Nome -->
+<p class="Dados">Nome:</p>
+<input type="text" [(ngModel)]="nome" name="nome" placeholder="Digite seu nome" required autocomplete="name">
 
-        <!-- Email -->
-        <p class="Dados">Email:</p>
-        <input type="email" [(ngModel)]="email" name="email" placeholder="Digite seu email" required>
+<!-- Email -->
+<p class="Dados">Email:</p>
+<input type="email" [(ngModel)]="email" name="email" placeholder="Digite seu email" required autocomplete="email">
 
-        <!-- Senha -->
-        <p class="Dados">Senha:</p>
-        <div class="password-container">
-          <input
-            id="senha"
-            [type]="mostrarSenha ? 'text' : 'password'"
-            [(ngModel)]="senhaTemp"
-            name="senhaTemp"
-            placeholder="Crie uma senha"
-            (input)="validarSenha()"
-          >
-          <i class="bi" [ngClass]="mostrarSenha ? 'bi-eye-slash' : 'bi-eye'" (click)="mostrarSenha = !mostrarSenha"></i>
-        </div>
+<!-- Senha -->
+<p class="Dados">Senha:</p>
+<div class="password-container">
+  <input
+    id="senha"
+    [type]="mostrarSenha ? 'text' : 'password'"
+    [(ngModel)]="senhaTemp"
+    name="senhaTemp"
+    placeholder="Crie uma senha"
+    (input)="validarSenha()"
+    autocomplete="new-password"
+  >
+  <i class="bi" [ngClass]="mostrarSenha ? 'bi-eye-slash' : 'bi-eye'" (click)="mostrarSenha = !mostrarSenha"></i>
+</div>
 
-        <!-- Confirmar Senha -->
-        <p class="Dados">Confirmar Senha:</p>
-        <div class="password-container">
-          <input
-            id="confirmarSenha"
-            [type]="mostrarSenha ? 'text' : 'password'"
-            [(ngModel)]="confirmarSenhaTemp"
-            name="confirmarSenhaTemp"
-            placeholder="Repita a senha"
-          >
-          <i class="bi" [ngClass]="mostrarSenha ? 'bi-eye-slash' : 'bi-eye'" (click)="mostrarSenha = !mostrarSenha"></i>
-        </div>
+<!-- Confirmar Senha -->
+<p class="Dados">Confirmar Senha:</p>
+<div class="password-container">
+  <input
+    id="confirmarSenha"
+    [type]="mostrarSenha ? 'text' : 'password'"
+    [(ngModel)]="confirmarSenhaTemp"
+    name="confirmarSenhaTemp"
+    placeholder="Repita a senha"
+    autocomplete="new-password"
+  >
+  <i class="bi" [ngClass]="mostrarSenha ? 'bi-eye-slash' : 'bi-eye'" (click)="mostrarSenha = !mostrarSenha"></i>
+</div>
+
+
+        <!-- Requisitos de senha -->
+        <ul class="senha-requisitos">
+          <li *ngFor="let req of senhaRequisitos" [class.valido]="req.valido">
+            {{ req.descricao }}
+          </li>
+        </ul>
 
         <!-- Erro Atual -->
         <div *ngIf="erroAtual" class="erro-geral">

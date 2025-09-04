@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
-  imports: [RouterModule, FormsModule, CommonModule],
+  imports: [RouterModule, FormsModule, CommonModule, HttpClientModule],
   templateUrl: './cadastro.html',
   styleUrls: ['./cadastro.css']
 })
@@ -27,6 +28,8 @@ export class Cadastro {
     { id: 'minLength', descricao: 'A senha deve ter no mínimo 8 caracteres', valido: false }
   ];
 
+  constructor(private http: HttpClient, private router: Router) {}
+
   // ---------------- Validação de senha ----------------
   validarSenha() {
     const senha = this.senhaTemp;
@@ -43,43 +46,41 @@ export class Cadastro {
 
   // ---------------- Cadastro ----------------
   cadastrarLocal() {
-    // Limpa o erro anterior
     this.erroAtual = '';
 
-    // Ordem de prioridade para exibir erros
-    if (!this.nome) {
-      this.erroAtual = 'Nome é obrigatório';
-      return;
-    }
-    if (!this.email) {
-      this.erroAtual = 'Email é obrigatório';
-      return;
-    }
-    if (!this.senhaTemp) {
-      this.erroAtual = 'Senha é obrigatória';
-      return;
-    }
+    // Validações
+    if (!this.nome) { this.erroAtual = 'Nome é obrigatório'; return; }
+    if (!this.email) { this.erroAtual = 'Email é obrigatório'; return; }
+    if (!this.senhaTemp) { this.erroAtual = 'Senha é obrigatória'; return; }
+
     this.validarSenha();
     const requisitoNaoAtendido = this.senhaRequisitos.find(r => !r.valido);
-    if (requisitoNaoAtendido) {
-      this.erroAtual = requisitoNaoAtendido.descricao;
-      return;
-    }
-    if (!this.confirmarSenhaTemp) {
-      this.erroAtual = 'Confirme sua senha';
-      return;
-    }
-    if (!this.senhasConferem()) {
-      this.erroAtual = 'As senhas não coincidem';
-      return;
-    }
+    if (requisitoNaoAtendido) { this.erroAtual = requisitoNaoAtendido.descricao; return; }
 
-    // Se passou por todas validações
-    alert('Cadastro realizado com sucesso!');
-    this.nome = '';
-    this.email = '';
-    this.senhaTemp = '';
-    this.confirmarSenhaTemp = '';
-    this.mostrarSenha = false;
+    if (!this.confirmarSenhaTemp) { this.erroAtual = 'Confirme sua senha'; return; }
+    if (!this.senhasConferem()) { this.erroAtual = 'As senhas não coincidem'; return; }
+
+    // Se passou por todas validações, envia para o backend
+    const usuario = {
+      nome: this.nome,
+      email: this.email,
+      senha: this.senhaTemp
+    };
+
+    this.http.post("http://localhost:8080/api/auth/cadastro", usuario, { responseType: 'text' })
+    .subscribe({
+      next: (res) => {
+        alert(res); // Vai mostrar "Cadastro realizado com sucesso"
+        this.nome = '';
+        this.email = '';
+        this.senhaTemp = '';
+        this.confirmarSenhaTemp = '';
+      },
+      error: (err) => {
+        alert("Erro ao cadastrar: " + JSON.stringify(err));
+      }
+    });
+  
+    
   }
 }

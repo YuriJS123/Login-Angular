@@ -98,20 +98,20 @@
     font-size: 1.2rem;
   }
   
-  /* Requisitos de senha */
-  .senha-requisito {
+  .senha-requisitos li {
     font-size: 0.85rem;
     margin-top: 0.3rem;
     text-align: left;
   }
   
-  .senha-requisito .valido {
+  .senha-requisitos li.valido {
     color: green;
   }
   
-  .senha-requisito .invalido {
+  .senha-requisitos li.invalido {
     color: red;
   }
+  
   
   /* Mensagens de erro */
   .erro {
